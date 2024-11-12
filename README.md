@@ -54,7 +54,7 @@ we use velodyne-16
 ## 1.2.3 Camera
 we use usbcam and firm carmera
 ## 1.2.4 Gps
-
+we use GPS 1
 ## 1.2.5 Erp
 
 ## 1.2.6 Imu
