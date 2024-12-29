@@ -4,6 +4,8 @@ For growth of technical issue
 
 
 # Overview
+
+![Car Image](img/car.png)
 ##  1. System Architecrue
 - [1.1 Hardware](-hardware)
   -   [1.1.1 computer](-computer)
@@ -54,7 +56,7 @@ we use velodyne-16
 ## 1.2.3 Camera
 we use usbcam and firm carmera
 ## 1.2.4 Gps
-
+we use GPS
 ## 1.2.5 Erp
 
 ## 1.2.6 Imu
@@ -62,7 +64,8 @@ we use usbcam and firm carmera
 # 1.2 Software
 
 ## 1.2.1 OS
-we use Ubuntu 20.04
+we use OS Ubuntu 20.04 both computer
+
 ## 1.2.2 ROS
 we use ros noetic and multicore
 ## 1.2.3  catkin workspace
