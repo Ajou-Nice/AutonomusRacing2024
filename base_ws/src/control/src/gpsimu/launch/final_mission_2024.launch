@@ -1,0 +1,13 @@
+<launch>
+    <node pkg="gpsimu" type="lattice_gps_obs_integrate_2024.py" name="obs_detection"  />
+    <node pkg="gpsimu" type="lattice_planner_integrate_2024.py" name="lattice_path"  />
+    <node pkg="gpsimu" type="pickup_path_pub_2024.py" name="pickup_path"  />
+    <node pkg="gpsimu" type="delivery_path_pub_2024.py" name="delivery_path"  />
+    
+    <node pkg="gpsimu" type="final_parking_path_gen_2024.py" name="final_parking_path_gen"  />
+    
+
+
+    
+>
+</launch>

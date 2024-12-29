@@ -1,0 +1,32 @@
+<?xml version="1.1"?>
+
+<!-- Standalone example launch file for GX3, GX4, GX/CX5, RQ1 and GQ7 series devices-->
+<!-- Note: Feature support is device-dependent and some of the following settings may have no affect on your device. -->
+<!--  Please consult your device's documentation for supported features -->
+<launch>
+
+  <!-- Declare arguments with default values -->
+  <arg name="namespace"   default = "/"                           doc = "Namespace to use when launching the nodes in this launch file" />
+  <arg name="node_name"   default = "microstrain_inertial_driver" doc = "Name to give the Microstrain Inertial Driver" />
+  <arg name="debug"       default = "false"                       doc = "Whether or not to log debug information." />
+  <arg name="params_file" default = ""                            doc = "Path to file that will load additional parameters" />
+
+  <!-- Set the log level to debug -->
+  <env name="ROSCONSOLE_CONFIG_FILE" value="$(find microstrain_inertial_driver)/config/custom_rosconsole.conf" if="$(arg debug)" />
+
+  <!-- ****************************************************************** -->
+  <!-- Microstrain sensor node -->
+  <!-- ****************************************************************** -->
+  <node name="$(arg node_name)" pkg="microstrain_inertial_driver" type="microstrain_inertial_driver_node" output="screen" ns="$(arg namespace)">
+
+    <!-- Load the default params file. -->
+    <rosparam file="$(find microstrain_inertial_driver)/microstrain_inertial_driver_common/config/params.yml" command="load" />
+
+    <!-- If you want to override any settings specified in the params.yml file, make a new yaml file, and set the value via the params_file arg -->
+    <rosparam file="$(arg params_file)" command="load" unless="$(eval arg('params_file') == '')" subst_value="true" />
+
+    <!-- Supported overrides -->
+    <param name="debug" value="$(arg debug)" type="bool" />
+  </node>
+
+</launch>

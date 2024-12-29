@@ -1,0 +1,8 @@
+<launch>
+    <node pkg="gpsimu" type="tf_pub_2024.py" name="tf"  />
+    <!--node pkg="gpsimu" type="gpsimu_parser_2024.py" name="gpsimu_parser" /--> 
+    <node pkg="gpsimu" type="global_path_pub_2024.py" name="global_path"  />
+    <node pkg="gpsimu" type="local_path_pub_2024.py" name="local_path"  />
+    <!--node pkg="gpsimu" type="heading_calculator_2024.py" name="heading"  /-->
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find gpsimu)/rviz/lane_detection.rviz" />
+</launch>

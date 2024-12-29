@@ -1,0 +1,6 @@
+<launch>
+    <node pkg="gpsimu" type="final_controller_2024.py" name="final_controller"  />
+    <node pkg="gpsimu" type="final_planner_2024.py" name="final_planner"  />
+    <node pkg="gpsimu" type="planner_delivery_return_2024.py" name="final_planner"  />
+>
+</launch>

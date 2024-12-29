@@ -1,0 +1,95 @@
+<library path="src">
+  <class name="Quickview" type="microstrain_inertial_rqt.quickview.Quickview" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      Single Pane of glass view for Microstrain inertial devices
+    </description>
+    <qtgui>
+      <group>
+        <label>Microstrain</label>
+      </group>
+      <label>Quickview</label>
+      <icon type="theme">system-help</icon>
+      <statustip>Single pane of glass view for Microstrain inertial devices</statustip>
+    </qtgui>
+  </class>
+  <class name="Filter Data" type="microstrain_inertial_rqt.filter_data.FilterDataPlugin" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      Widget to view Filter data from Microstrain inertial devices
+    </description>
+    <qtgui>
+      <group>
+        <label>Microstrain</label>
+      </group>
+      <group>
+        <label>Widgets</label>
+      </group>
+      <label>Filter Data</label>
+      <icon type="theme">system-help</icon>
+      <statustip>Widget to view Filter data from Microstrain inertial devices</statustip>
+    </qtgui>
+  </class>
+  <class name="Sensor Data" type="microstrain_inertial_rqt.sensor_data.SensorDataPlugin" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      Widget to view Sensor data from Microstrain inertial devices
+    </description>
+    <qtgui>
+      <group>
+        <label>Microstrain</label>
+      </group>
+      <group>
+        <label>Widgets</label>
+      </group>
+      <label>Sensor Data</label>
+      <icon type="theme">system-help</icon>
+      <statustip>Widget to view Sensor data from Microstrain inertial devices</statustip>
+    </qtgui>
+  </class>
+  <class name="GNSS Data" type="microstrain_inertial_rqt.gnss_data.GNSSDataPlugin" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      Widget to view GNSS data from Microstrain inertial devices
+    </description>
+    <qtgui>
+      <group>
+        <label>Microstrain</label>
+      </group>
+      <group>
+        <label>Widgets</label>
+      </group>
+      <label>GNSS Data</label>
+      <icon type="theme">system-help</icon>
+      <statustip>Widget to view GNSS data from Microstrain inertial devices</statustip>
+    </qtgui>
+  </class>
+  <class name="GQ7 LED" type="microstrain_inertial_rqt.gq7_led.GQ7LEDPlugin" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      Widget to view GQ7 LED and status
+    </description>
+    <qtgui>
+      <group>
+        <label>Microstrain</label>
+      </group>
+      <group>
+        <label>Widgets</label>
+      </group>
+      <label>GQ7 LED</label>
+      <icon type="theme">system-help</icon>
+      <statustip>Widget to view GQ7 LED and status</statustip>
+    </qtgui>
+  </class>
+  <class name="RTK Status" type="microstrain_inertial_rqt.rtk_status.RTKStatusPlugin" base_class_type="rqt_gui_py::Plugin">
+    <description>
+      Widget to view GQ7 RTK status
+    </description>
+    <qtgui>
+      <group>
+        <label>Microstrain</label>
+      </group>
+      <group>
+        <label>Widgets</label>
+      </group>
+      <label>RTK Status</label>
+      <icon type="theme">system-help</icon>
+      <statustip>Widget to view GQ7 RTK status</statustip>
+    </qtgui>
+  </class>
+</library>

@@ -1,0 +1,408 @@
+{
+  "keys": {},
+  "groups": {
+    "mainwindow": {
+      "keys": {
+        "geometry": {
+          "repr(QByteArray.hex)": "QtCore.QByteArray(b'01d9d0cb000300000000101f0000045300001427000008540000101f000004780000142700000854000000000000000007800000101f000004780000142700000854')",
+          "type": "repr(QByteArray.hex)",
+          "pretty-print": "       S ' T   x ' T        x ' T"
+        },
+        "state": {
+          "repr(QByteArray.hex)": "QtCore.QByteArray(b'000000ff00000000fd000000010000000300000409000003b3fc0100000003fb00000050006d006900630072006f00730074007200610069006e005f0069006e00650072007400690061006c005f007200710074005f005f0051007500690063006b0076006900650077005f005f0031005f005f0100000000000005090000000000000000fb00000062006d006900630072006f00730074007200610069006e005f0069006e00650072007400690061006c005f007200710074005f005f0051007500690063006b0076006900650077005f005f0031005f005f0051007500690063006b00760069006500770100000000000004090000040900fffffffb00000060006d006900630072006f00730074007200610069006e005f0069006e00650072007400690061006c005f007200710074005f005f0047004e0053005300200044006100740061005f005f0031005f005f0047004e0053005300440061007400610100000000000005090000000000000000000004090000000000000004000000040000000800000008fc00000001000000030000000100000036004d0069006e0069006d0069007a006500640044006f0063006b00570069006400670065007400730054006f006f006c0062006100720000000000ffffffff0000000000000000')",
+          "type": "repr(QByteArray.hex)",
+          "pretty-print": "                 Pmicrostrain_inertial_rqt__Quickview__1__          bmicrostrain_inertial_rqt__Quickview__1__Quickview          `microstrain_inertial_rqt__GNSS Data__1__GNSSData                            6MinimizedDockWidgetsToolbar        "
+        }
+      },
+      "groups": {
+        "toolbar_areas": {
+          "keys": {
+            "MinimizedDockWidgetsToolbar": {
+              "repr": "8",
+              "type": "repr"
+            }
+          },
+          "groups": {}
+        }
+      }
+    },
+    "pluginmanager": {
+      "keys": {
+        "running-plugins": {
+          "repr": "{'microstrain_inertial_rqt/Quickview': [1]}",
+          "type": "repr"
+        }
+      },
+      "groups": {
+        "plugin__microstrain_inertial_rqt__Filter Data__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__Filter Data Widget": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'Filter Data Widget'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__FilterData": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'FilterData'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__Form": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'Form'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__microstrain_inertial_rqt__Filter Data__2": {
+          "keys": {},
+          "groups": {
+            "dock_widget__Filter Data Widget": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'Filter Data Widget (2)'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__microstrain_inertial_rqt__GNSS Data__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__GNSSData": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'GNSSData'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "True",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__microstrain_inertial_rqt__GQ7 LED__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__GQ7LED": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'GQ7LED'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__microstrain_inertial_rqt__Microstrain Inertial Quickview__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__MicrostrainInertialQuickview": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'MicrostrainInertialQuickview'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__microstrain_inertial_rqt__Quickview 2__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "''",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__FilterData": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'FilterData'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__GNSSData": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'GNSSData'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__GQ7LED": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'GQ7LED'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__RTKStatus": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'RTKStatus'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__SensorData": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'SensorData'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__microstrain_inertial_rqt__Quickview__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "''",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__MicrostrainInertialQuickview": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'MicrostrainInertialQuickview'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__Quickview": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "''",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "True",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__microstrain_inertial_rqt__RTK Status__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__RTKStatus": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'RTKStatus'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        },
+        "plugin__microstrain_inertial_rqt__Sensor Data__1": {
+          "keys": {},
+          "groups": {
+            "dock_widget__Form": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'Form'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            },
+            "dock_widget__SensorData": {
+              "keys": {
+                "dock_widget_title": {
+                  "repr": "'SensorData'",
+                  "type": "repr"
+                },
+                "dockable": {
+                  "repr": "'true'",
+                  "type": "repr"
+                },
+                "parent": {
+                  "repr": "None",
+                  "type": "repr"
+                }
+              },
+              "groups": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}

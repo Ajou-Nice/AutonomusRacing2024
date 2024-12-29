@@ -1,0 +1,9 @@
+<launch>
+
+    <node pkg="gpsimu" type="pre_controller_2024.py" name="final_controller"  />
+    <node pkg="gpsimu" type="pre_planner_2024.py" name="final_planner"  />
+    <node pkg="gpsimu" type="path_plan_tunnel_2024.py" name="pickup_path"  />
+
+    
+>
+</launch>

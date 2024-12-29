@@ -1,0 +1,17 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/ros-mscl/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/ros-mscl/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ],
+    "editor.tabSize": 2,
+    "files.associations": {
+        "functional": "cpp",
+        "*.tcc": "cpp",
+        "optional": "cpp",
+        "system_error": "cpp"
+    }
+}

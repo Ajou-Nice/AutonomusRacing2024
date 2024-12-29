@@ -1,0 +1,10 @@
+<launch>
+    <node pkg="gpsimu" type="tf_pub.py" name="tf"  />
+    <!--node pkg="rviz" type="rviz" name="rviz" args="-d $(find gpsimu)/rviz/labacon_drive.rviz" /-->
+    <node pkg="gpsimu" type="labacone_local_path_pub.py" name="labacone_local_path"  />
+    <node pkg="gpsimu" type="labacone_path.py" name="labacone_path"  />
+    <node pkg="gpsimu" type="labacone_gps_path_control.py" name="labacone_gps_path_control"  />
+    <!--node pkg="gpsimu" type="labacone_controller_final_ver2.py" name="labacone_gps_path_control"  /-->
+    
+    
+</launch>
