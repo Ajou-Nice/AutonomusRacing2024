@@ -4,6 +4,8 @@ For growth of technical issue
 
 
 # Overview
+
+![Car Image](img/car.png)
 ##  1. System Architecrue
 - [1.1 Hardware](-hardware)
   -   [1.1.1 computer](-computer)
@@ -54,7 +56,7 @@ we use velodyne-16
 ## 1.2.3 Camera
 we use usbcam and firm carmera
 ## 1.2.4 Gps
-
+we use GPS
 ## 1.2.5 Erp
 
 ## 1.2.6 Imu
@@ -62,7 +64,8 @@ we use usbcam and firm carmera
 # 1.2 Software
 
 ## 1.2.1 OS
-we use Ubuntu 20.04
+we use OS Ubuntu 20.04 both computer
+
 ## 1.2.2 ROS
 we use ros noetic and multicore
 ## 1.2.3  catkin workspace
@@ -131,10 +134,84 @@ yolov7_ros는 yolo를 사용하며 신호등인식과 표지판인식을 수행�
 roslaunch yolov7_ros vision_all
 
 ```
+
 ## 1.2.6 Control package
 
 <!--control  packae에 대한 설명을 담아주세요! -->
 
+###  catkin_virtualenv
+
+imu 패키지(microstrain_inertial)을 실행을 하기 위해 필요한 패키지입니다.
+
+### erp_driver
+
+erp 플랫폼의 speed, steer, brake, mode 등 정보를 받기위한 패키지입니다.
+
+```bash
+
+#erp usb 권한 설정 ( usb를 꼽는 순서에 따라 변경 필요 )
+
+cd
+cd /dev
+usb1
+# 비밀번호 입력
+
+#erp 관련 데이터 토픽 발생 및 실행
+
+roslaunch erp_driver erp42_base.launch
+
+```
+
+### microstrain_inertial
+
+imu 데이터 정보를 받기위한 패키지입니다.
+
+```bash
+
+#imu 데이터의 토픽 발행을 실행시킵니다.
+
+roslaunch microstrain_inertial_driver microstrain.launch 
+
+```
+
+### nmea_navsat_driver
+
+gps 데이터 정보를 받기위한 패키지입니다.
+
+```bash
+
+#gps usb 권한 설정 ( usb를 꼽는 순서에 따라 변경 필요 )
+cd
+cd /dev
+usb1
+# 비밀번호 입력
+
+#gps 센서 초기 설정 1
+rosrun nmea_navsat_driver nmea_topic_serial_reader _port:=/dev/ttyUSB0 _baud:=115200
+
+#gps 센서 초기 설정 2
+rosrun nmea_navsat_driver nmea_topic_driver
+
+```
+
+
+### gpsimu
+
+센서 데이터들을 이용하여 작성된 제어 코드를 실행시키기 위한 패키지입니다.
+
+```bash
+
+#utm 좌표 및 imu heading 토픽을 발행시킵니다.
+
+cd ~/control/src/gpsimu/scripts/
+python3 gpsimuparser.py
+
+#보정된 heading 토픽을 발행시킵니다.
+
+cd ~/control/src/gpsimu/scripts/
+python3 heading_calculator.py
+
+```
 
 # 2. How to use
 
