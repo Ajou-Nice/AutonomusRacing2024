@@ -72,6 +72,12 @@ this is our workspace tree
 base_ws
 └── src
     ├── control
+    │   ├── src
+    │   │   ├── catkin_virtualenv
+    │   │   ├── erp_driver
+    │   │   ├── gpsimu
+    │   │   ├── microstrain_inertial
+    │   │   └── nmea_navsat_driver
     │   └── README.md
     ├── lidar
     │   ├── Light_signal
