@@ -27,15 +27,10 @@ C2W = [
 
 
 def caculate_local_postion( box_msg ):
-
     center_x = box_msg.bbox.center.x
     size_y = box_msg.bbox.size_y
-
     pos_y = (TARGET_SIZE*FY)/size_y
     pos_x = ((center_x - CX)/FY)* pos_y
-    # print ("size:",box_msg.bbox.size_x , box_msg.bbox.size_y)
-    # print( "pixel pos :" ,box_msg.bbox.center.x , box_msg.bbox.center.y)
-    # print("local pos  :" ,pos_y/1000, pos_x/1000)
     return (pos_y/1000)-0.24, (pos_x/1000)+0.15
 
 

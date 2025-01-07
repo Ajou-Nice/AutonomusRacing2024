@@ -24,7 +24,6 @@ from cv_bridge import CvBridge
 
 import sys
 
-print(sys.version)
 
 def parse_classes_file(path):
     classes = []

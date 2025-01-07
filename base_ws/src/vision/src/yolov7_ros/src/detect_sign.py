@@ -22,7 +22,6 @@ from cv_bridge import CvBridge
 
 import sys
 
-print(sys.version)
 
 def parse_classes_file(path):
     classes = []
@@ -33,26 +32,9 @@ def parse_classes_file(path):
     return classes
 
 
-def rescale(ori_shape: Tuple[int, int],
- boxes: Union[torch.Tensor, np.ndarray],
-            target_shape: Tuple[int, int]):
-    """Rescale the output to the original image shape
-    :param ori_shape: original width and height [width, height].
-    :param boxes: original bounding boxes as a torch.Tensor or np.array or shape
-        [num_boxes, >=4], where the first 4 entries of each element have to be
-        [x1, y1, x2, y2].
-    :param target_shape: target width and height [width, height].
-    """
-    xscale = target_shape[1] / ori_shape[1]
-    yscale = target_shape[0] / ori_shape[0]
-
-    boxes[:, [0, 2]] *= xscale
-    boxes[:, [1, 3]] *= yscale
-
-    return boxes
 
 
-class YoloV7:
+class Yolov11:
     def __init__(self, weights, conf_thresh: float = 0.5, iou_thresh: float = 0.45,
                  device: str = "cuda"):
         self.conf_thresh = conf_thresh
@@ -78,7 +60,7 @@ class YoloV7:
         return detections
 
 
-class Yolov7Publisher:
+class Yolov11Publisher:
     def __init__(self, img_topic: str, weights: str, conf_thresh: float = 0.5,
                  iou_thresh: float = 0.45, pub_topic: str = "yolov7_detections",
                  device: str = "cuda",
@@ -124,17 +106,16 @@ class Yolov7Publisher:
         self.detection_publisher = rospy.Publisher(
             pub_topic, Detection2DArray, queue_size=queue_size
         )
-        rospy.loginfo("YOLOv7 initialization complete. Ready to start inference")
+        rospy.loginfo("YOLOv11 initialization complete. Ready to start inference")
 
     def process_img_msg(self, img_msg: Image):
         """ callback function for publisher """
         cv_image = self.bridge.imgmsg_to_cv2(img_msg)              
-        print(cv_image.shape[0] ,cv_image.shape[1])
 
         detections =self.model.predict(
                 source =cv_image,
-                classes =[ i for i in range(1,26)]
-
+                classes =[ i for i in range(1,26)],
+                verbose = False,
         )
 
         detection_msg = create_detection_msg(img_msg, detections)
@@ -164,7 +145,7 @@ class Yolov7Publisher:
 
 
 if __name__ == "__main__":
-    rospy.init_node("yolov7_node")
+    rospy.init_node("yolov11_node")
 
     ns = rospy.get_name() + "/"
 
@@ -195,7 +176,7 @@ if __name__ == "__main__":
         raise ValueError("Check your device.")
 
 
-    publisher = Yolov7Publisher(
+    publisher = Yolov11Publisher(
         img_topic=img_topic,
         pub_topic=out_topic,
         weights=weights_path,

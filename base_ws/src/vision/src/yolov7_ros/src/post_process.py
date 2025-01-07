@@ -63,7 +63,7 @@ class YoloPostProcess:
             yolo_topic, Detection2DArray, self.yolo_post_process
         )
 
-        self.img_subscriber = rospy.Subscriber(
+        self.light_subscriber = rospy.Subscriber(
             yolo_traffic_topic, Detection2DArray, self.yolo_traffic_process
         )
 
@@ -205,9 +205,9 @@ class YoloPostProcess:
         self.labacon_selection(labacon_area)
    
 
-        rospy.loginfo(f"sign recognition counts : {len(self.sign_pos_dict[1]) ,len(self.sign_pos_dict[2]) , len(self.sign_pos_dict[3]) }")
-        rospy.loginfo(f"sgin selection counts : {len(self.sign_pos_dict[1]) ,len(self.sign_pos_dict[2]) , len(self.sign_pos_dict[3]) }")
-        rospy.loginfo(f"utrun stare : {self.uturnStartFlag} labacount : {self.labacon_cnt}")
+        # rospy.loginfo(f"sign recognition counts : {len(self.sign_pos_dict[1]) ,len(self.sign_pos_dict[2]) , len(self.sign_pos_dict[3]) }")
+        # rospy.loginfo(f"sgin selection counts : {len(self.sign_pos_dict[1]) ,len(self.sign_pos_dict[2]) , len(self.sign_pos_dict[3]) }")
+        # rospy.loginfo(f"utrun stare : {self.uturnStartFlag} labacount : {self.labacon_cnt}")
 
         
     def sign_selection(self, sign_area):
@@ -238,21 +238,21 @@ class YoloPostProcess:
             x ,y = self.sign_pos_dict[1][-1]
             msg.data =[11,-x,y ]
             self.traffic_sign_stop_location_publisher.publish(msg) 
-            rospy.logwarn("Find Delivary 1")
+            # rospy.logwarn("Find Delivary 1")
         
         elif (len(self.sign_pos_dict[2])>= POS_LIST_NUMVER and self.delivery_id==2) :
             msg = Float32MultiArray()
             x ,y = self.sign_pos_dict[2][-1]
             msg.data =[12,-x,y ]
             self.traffic_sign_stop_location_publisher.publish(msg) 
-            rospy.logwarn("Find Delivary 2")
+            # rospy.logwarn("Find Delivary 2")
 
         elif (len(self.sign_pos_dict[3])>= POS_LIST_NUMVER and self.delivery_id==3) :
             msg = Float32MultiArray()
             x ,y = self.sign_pos_dict[3][-1]
             msg.data =[13,-x,y ]
             self.traffic_sign_stop_location_publisher.publish(msg) 
-            rospy.logwarn("Find Delivary 3")
+            # rospy.logwarn("Find Delivary 3")
 
 
     def sign_recognition(self, sign_area):
@@ -370,35 +370,23 @@ class YoloPostProcess:
 if __name__ == "__main__":
     rospy.init_node("vision_post_process",log_level=rospy.DEBUG)
     ns = rospy.get_name() + "/"
-        
-    yolov7_detection = "/yolov7/yolov7_detect"
-    way_point = "/current_waypoint"
-    yolov7_result_sign = "traffic_sign"
-    yolov7_result_labacon = "traffic_labacon"
-    yolov7_result_light = "traffic_light"
-    yolov7_result_sign_location ="traffic_sign_location"
-    yolov7_result_sign_stop_location ="traffic_sign_stop_location"
-    yolo_traffic_topic ="/yolov7/yolov7_detect_traffic"
-    way_point = "/current_waypoint"
     classes_path = rospy.get_param(ns + "classes_path") 
     classes=parse_classes_file(classes_path)    
-    img_size = 640
     rospy.logdebug('processer strat!!')
 
 
     publisher = YoloPostProcess(
-        yolo_topic=yolov7_detection,
-        yolo_traffic_topic=yolo_traffic_topic,
-        way_point_topic=way_point,
-        pub_topic_1=yolov7_result_sign,
-        pub_topic_2=yolov7_result_labacon,
-        pub_topic_3=yolov7_result_light,
-        pub_topic_4 =yolov7_result_sign_location,
-        pub_topic_5 =yolov7_result_sign_stop_location,
-        img_size=(img_size, img_size),
+        yolo_topic="/yolov7/yolov7_detect",
+        yolo_traffic_topic="/yolov7/yolov7_detect_traffic",
+        way_point_topic="/current_waypoint",
+        pub_topic_1="traffic_sign",
+        pub_topic_2="traffic_labacon",
+        pub_topic_3="traffic_light",
+        pub_topic_4 ="traffic_sign_location",
+        pub_topic_5 ="traffic_sign_stop_location",
+        img_size=(640, 640),
         class_labels=classes
     )
-
     rospy.spin()
 
 
