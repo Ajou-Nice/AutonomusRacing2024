@@ -1,11 +1,13 @@
 from ultralytics import YOLO
+from ultralytics import settings
 
 # Load a model
 model = YOLO("yolo11x.pt")
+settings.update({"datasets_dir": ".."})
 
 # Train the model
 train_results = model.train(
-    data="datasets/data_1030/data.yaml",
+    data="datasets/241101/data.yaml",
     project="yolo11",  # path to dataset YAML
     epochs=100,  # number of training epochs
     imgsz=640,  # training image size

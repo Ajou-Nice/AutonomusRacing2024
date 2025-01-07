@@ -5,7 +5,7 @@ from models.experimental import attempt_load
 from utils.general import non_max_suppression
 from utils.ros import create_detection_msg
 from utils.visualizer import draw_detections
-
+from ultralytics import YOLO
 import os
 from typing import Tuple, Union, List
 
@@ -22,7 +22,6 @@ from cv_bridge import CvBridge
 
 import sys
 
-print(sys.version)
 
 def parse_classes_file(path):
     classes = []
@@ -33,26 +32,9 @@ def parse_classes_file(path):
     return classes
 
 
-def rescale(ori_shape: Tuple[int, int],
- boxes: Union[torch.Tensor, np.ndarray],
-            target_shape: Tuple[int, int]):
-    """Rescale the output to the original image shape
-    :param ori_shape: original width and height [width, height].
-    :param boxes: original bounding boxes as a torch.Tensor or np.array or shape
-        [num_boxes, >=4], where the first 4 entries of each element have to be
-        [x1, y1, x2, y2].
-    :param target_shape: target width and height [width, height].
-    """
-    xscale = target_shape[1] / ori_shape[1]
-    yscale = target_shape[0] / ori_shape[0]
-
-    boxes[:, [0, 2]] *= xscale
-    boxes[:, [1, 3]] *= yscale
-
-    return boxes
 
 
-class YoloV7:
+class Yolov11:
     def __init__(self, weights, conf_thresh: float = 0.5, iou_thresh: float = 0.45,
                  device: str = "cuda"):
         self.conf_thresh = conf_thresh
@@ -78,7 +60,7 @@ class YoloV7:
         return detections
 
 
-class Yolov7Publisher:
+class Yolov11Publisher:
     def __init__(self, img_topic: str, weights: str, conf_thresh: float = 0.5,
                  iou_thresh: float = 0.45, pub_topic: str = "yolov7_detections",
                  device: str = "cuda",
@@ -116,66 +98,39 @@ class Yolov7Publisher:
         self.bridge = CvBridge()
 
         self.tensorize = ToTensor()
-        self.model = YoloV7(
-            weights=weights, conf_thresh=conf_thresh, iou_thresh=iou_thresh,
-            device=device
-        )
+        self.model = YOLO(weights)
+
         self.img_subscriber = rospy.Subscriber(
             img_topic, Image, self.process_img_msg
         )
         self.detection_publisher = rospy.Publisher(
             pub_topic, Detection2DArray, queue_size=queue_size
         )
-        rospy.loginfo("YOLOv7 initialization complete. Ready to start inference")
+        rospy.loginfo("YOLOv11 initialization complete. Ready to start inference")
 
     def process_img_msg(self, img_msg: Image):
         """ callback function for publisher """
-  
-        np_img_orig = np.frombuffer(img_msg.data, dtype=np.uint8).reshape(img_msg.height, img_msg.width, -1)    
-              
-        # np_img_orig = np.flip(np_img_orig ,axis=0 )
-        # np_img_orig = np.flip(np_img_orig ,axis=1 )
+        cv_image = self.bridge.imgmsg_to_cv2(img_msg)              
 
-        if len(np_img_orig.shape) == 2:
-            np_img_orig = np.stack([np_img_orig] * 3, axis=2)
+        detections =self.model.predict(
+                source =cv_image,
+                classes =[ i for i in range(1,26)],
+                verbose = False,
+        )
 
-        h_orig, w_orig, c = np_img_orig.shape
-
-        # automatically resize the image to the next smaller possible size
-        w_scaled, h_scaled = self.img_size
-        np_img_resized = cv2.resize(np_img_orig, (w_scaled, h_scaled))
-
-        # conversion to torch tensor (copied from original yolov7 repo)
-        img = np_img_resized.transpose((2, 0, 1))[::-1]  # HWC to CHW, BGR to RGB
-  
-
-        img = torch.from_numpy(np.ascontiguousarray(img))
-        img = img.float()  # uint8 to fp16/32
-        img /= 255  # 0 - 255 to 0.0 - 1.
-        img = img.to(self.device)
-
-
-        # inference & rescaling the output to original img size
-        detections = self.model.inference(img)
-        detections[:, :4] = rescale(
-            [h_scaled, w_scaled], detections[:, :4], [h_orig, w_orig])
-        detections[:, :4] = detections[:, :4].round()
-
-        # publishing
         detection_msg = create_detection_msg(img_msg, detections)
         # rospy.loginfo(detection_msg)
         self.detection_publisher.publish(detection_msg)
 
         # visualizing if required
         if self.visualization_publisher:
-            bboxes = [[int(x1), int(y1), int(x2), int(y2)]
-                      for x1, y1, x2, y2 in detections[:, :4].tolist()]
-            classes = [int(c) for c in detections[:, 5].tolist()]
-            vis_img = draw_detections(np_img_orig, bboxes, classes,
+            bboxes = [[int(box.xyxy[0][0]), int(box.xyxy[0][1]), int(box.xyxy[0][2]), int(box.xyxy[0][3])]for box in detections[0].boxes]
+            classes = [int(box.cls) for  box in detections[0].boxes]
+            cv_image = draw_detections(cv_image, bboxes, classes,
                                       self.class_labels)
-            # resize_vis_img = cv2.resize(vis_img, (vis_img.shape[1]//2+100, vis_img.shape[0]//2+100))
-            # cv2.imshow('yolov7_result', resize_vis_img)
-            self.publish_image(vis_img, h_orig, w_orig)
+            # classes = [int(c) for c in detections[:, 5].tolist()]
+            self.publish_image(cv_image, cv_image.shape[0], cv_image.shape[1])
+
 
     def publish_image(self, imagedata, height, width):
         image_temp = Image()
@@ -190,7 +145,7 @@ class Yolov7Publisher:
 
 
 if __name__ == "__main__":
-    rospy.init_node("yolov7_node")
+    rospy.init_node("yolov11_node")
 
     ns = rospy.get_name() + "/"
 
@@ -221,7 +176,7 @@ if __name__ == "__main__":
         raise ValueError("Check your device.")
 
 
-    publisher = Yolov7Publisher(
+    publisher = Yolov11Publisher(
         img_topic=img_topic,
         pub_topic=out_topic,
         weights=weights_path,
