@@ -8,11 +8,11 @@
     <node name="republish2" type="republish" pkg="image_transport" output="screen" args="compressed in:=/usb_cam/image_raw _image_transport:=compressed raw out:=/axis_camera/image_raw" />
     <!-- <node name="republish2" type="republish" pkg="image_transport" output="screen" args="compressed in:=/camera/image_color _image_transport:=compressed raw out:=/axis_camera/image_color" /> -->
 
-    <node pkg="yolov7_ros" type="detec_ros_yolo11.py" name="detect" output="screen"
+    <node pkg="yolov7_ros" type="detect_ros.py" name="detect" output="screen"
     ns="yolov7">
         <!-- Download the official weights from the original repo -->
         <param name="weights_path" type="str"
-        value="$(find yolov7_ros)/src/yolov7_weights/last.pt"/>
+        value="$(find yolov7_ros)/src/weights/241101.pt"/>
         <!-- Path to a class_labels.txt file containing your desired class labels. The i-th entry corresponds to the i-th class id. For example, in coco class label 0 corresponds to 'person'. Files for the coco and berkeley deep drive datasets are provided in the 'class_labels/' directory. If you leave it empty then no class labels are visualized.-->
         <param name="classes_path" type="str" value="$(find yolov7_ros)/src/class_labels/label_0911.txt" />
         <!-- topic name to subscribe to -->
@@ -34,9 +34,9 @@
         <param name="device" type="str" value="cuda" />
     </node>
 
-   <node pkg="yolov7_ros" type="detect_ros_traffic.py" name="detect_traffic" output="screen" ns="yolov7">
+   <node pkg="yolov7_ros" type="detect_ros.py" name="detect_traffic" output="screen" ns="yolov7">
         <param name="weights_path" type="str"
-        value="$(find yolov7_ros)/src/yolov7_weights/best_0911.pt"/>
+        value="$(find yolov7_ros)/src/weights/241101.pt"/>
 
         <param name="classes_path" type="str" value="$(find yolov7_ros)/src/class_labels/label_0911.txt" />
 
@@ -56,7 +56,7 @@
         <param name="device" type="str" value="cuda" />
     </node>
 
-    <node pkg="yolov7_ros" type="post_process_v4.py" name="vision_post_process_check" output="screen">
+    <node pkg="yolov7_ros" type="post_process.py" name="vision_post_process_check" output="screen">
         <param name="classes_path" type="str" value="$(find yolov7_ros)/src/class_labels/label_0911.txt" />
     </node>
 
