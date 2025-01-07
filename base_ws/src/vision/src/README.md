@@ -15,9 +15,9 @@ annotation을 진행한후 원하는 yolo 모델에 맞게 데이터 형식을 �
 
 ## Yolo Train
 
-ulastic library에서 yolov11을 쉽게 학습할 수 있도록 API를 제공해줍니다.
+`ulastic library`에서 yolov11을 쉽게 학습할 수 있도록 API를 제공해줍니다.
 
-예시의  yolo11_train.py를 사용해서 학습 할 수 있습니다. 
+예시의  `yolo11_train`를 사용해서 학습 할 수 있습니다. 
 
 학습한 모델은 yolo11 폴더안에 저장됩니다.
 
