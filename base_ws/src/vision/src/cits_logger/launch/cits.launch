@@ -1,0 +1,7 @@
+<launch>
+
+  <param name='pattern_number' type='int' value="0"/>
+  <node  pkg="cits_logger" type="run.sh"  name="run"   args="$(find cits_logger)/src" output="screen"/>
+  <node type="rviz" name="rviz" pkg="rviz" args="-d $(find cits_logger)/rviz/config_file.rviz" />
+
+</launch>

@@ -1,0 +1,10 @@
+<launch>
+    <node name="republish2" type="republish" pkg="image_transport" output="screen" args="compressed in:=/usb_cam/image_raw _image_transport:=compressed raw out:=/axis_camera/image_raw" />
+
+     <node pkg="yolov7_ros" type="stopLine_detection_final.py" name="stop_line_detect" output="screen">
+    </node>
+    <node pkg="yolov7_ros" type="crossWalk_detection_final.py" name="crosswalk_detect" output="screen">
+    </node>
+    <node pkg="yolov7_ros" type="lane_detection_final.py" name="lane_detect" output="screen">
+    </node>
+</launch>
