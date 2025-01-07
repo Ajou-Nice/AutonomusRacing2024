@@ -1,5 +1,0 @@
-torch
-torchvision
-tensorboard
-opencv-python
-wandb
